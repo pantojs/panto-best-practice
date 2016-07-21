@@ -9,12 +9,12 @@ $npm install
 $panto -l into -w
 ```
 
-[npm-url]: https://npmjs.org/package/panto-best-practice panto-best-practice on Github
-[downloads-image]: http://img.shields.io/npm/dm/panto-best-practice panto-best-practice on Github.svg
-[npm-image]: http://img.shields.io/npm/v/panto-best-practice panto-best-practice on Github.svg
-[travis-url]: https://travis-ci.org/pantojs/panto-best-practice panto-best-practice on Github
-[travis-image]: http://img.shields.io/travis/pantojs/panto-best-practice panto-best-practice on Github.svg
-[david-dm-url]:https://david-dm.org/pantojs/panto-best-practice panto-best-practice on Github
-[david-dm-image]:https://david-dm.org/pantojs/panto-best-practice panto-best-practice on Github.svg
-[david-dm-dev-url]:https://david-dm.org/pantojs/panto-best-practice panto-best-practice on Github#info=devDependencies
-[david-dm-dev-image]:https://david-dm.org/pantojs/panto-best-practice panto-best-practice on Github/dev-status.svg
+[npm-url]: https://npmjs.org/package/panto-best-practice
+[downloads-image]: http://img.shields.io/npm/dm/panto-best-practice.svg
+[npm-image]: http://img.shields.io/npm/v/panto-best-practice.svg
+[travis-url]: https://travis-ci.org/pantojs/panto-best-practice
+[travis-image]: http://img.shields.io/travis/pantojs/panto-best-practice.svg
+[david-dm-url]:https://david-dm.org/pantojs/panto-best-practice
+[david-dm-image]:https://david-dm.org/pantojs/panto-best-practice.svg
+[david-dm-dev-url]:https://david-dm.org/pantojs/panto-best-practice#info=devDependencies
+[david-dm-dev-image]:https://david-dm.org/pantojs/panto-best-practice/dev-status.svg
