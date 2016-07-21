@@ -14,15 +14,20 @@
 module.exports = panto => {
     panto.setOptions({
         src: 'src',
-        output:'output',
+        output: 'output',
         cwd: __dirname
     });
-    
+
     panto.loadTransformer('read', require('panto-transformer-read'));
     panto.loadTransformer('babel', require('panto-transformer-babel'));
     panto.loadTransformer('write', require('panto-transformer-write'));
+    panto.loadTransformer('browserify', require('panto-transformer-browserify'));
+    panto.loadTransformer('uglify', require('panto-transformer-uglify'));
 
     panto.$('**/*.jsx').tag('js').read().babel({
-        extend: __dirname +'/.babelrc'
-    }).write();
+        extend: __dirname + '/.babelrc'
+    }).browserify({
+        bundle: 'bundle.js',
+        entry: 'scripts/main.jsx'
+    }).uglify().write();
 };
