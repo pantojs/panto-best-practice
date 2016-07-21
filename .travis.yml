@@ -1,0 +1,6 @@
+language: node_js
+before_install:
+  - npm install -g panto-cli
+sudo: false
+node_js:
+  - stable
