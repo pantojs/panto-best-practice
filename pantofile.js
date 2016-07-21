@@ -23,11 +23,20 @@ module.exports = panto => {
     panto.loadTransformer('write', require('panto-transformer-write'));
     panto.loadTransformer('browserify', require('panto-transformer-browserify'));
     panto.loadTransformer('uglify', require('panto-transformer-uglify'));
+    panto.loadTransformer('integrity', require('panto-transformer-integrity'));
+    panto.loadTransformer('aspect', require('panto-transformer-aspect'));
+
+    let scriptIntegrity;
 
     panto.$('**/*.jsx').tag('js').read().babel({
         extend: __dirname + '/.babelrc'
     }).browserify({
         bundle: 'bundle.js',
         entry: 'scripts/main.jsx'
-    }).uglify().write();
+    }).uglify().integrity().aspect({
+        aspect: file => {
+            scriptIntegrity = file.integrity;
+        }
+    }).write();
+
 };
