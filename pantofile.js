@@ -25,6 +25,7 @@ module.exports = panto => {
     panto.loadTransformer('uglify', require('panto-transformer-uglify'));
     panto.loadTransformer('integrity', require('panto-transformer-integrity'));
     panto.loadTransformer('aspect', require('panto-transformer-aspect'));
+    panto.loadTransformer('replace', require('panto-transformer-replace'));
 
     let scriptIntegrity;
 
@@ -39,4 +40,12 @@ module.exports = panto => {
         }
     }).write();
 
+    panto.$('index.html').tag('index.html').read().replace({
+        replacements: [
+            ['<!-- scripts -->', function () {
+                return `<script src="./bundle.js" integrity="${scriptIntegrity}"></script>`;
+            }]
+        ]
+    }).write();
+    panto.reportDependencies('index.html', 'scripts/main.jsx');
 };

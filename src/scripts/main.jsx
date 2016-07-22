@@ -10,11 +10,6 @@
   * @since 0.1.0
   */
 import React from 'react';
+import ReactDOM from 'react-dom';
 
-class Index extends React.Component {
-    render() {
-        return (<h1>Hello World</h1>);
-    }
-}
-
-export default Index;
+ReactDOM.render((<h1><strong>PantoJS Best Practice</strong>: Hello World!</h1>), document.querySelector('#react-root'));
