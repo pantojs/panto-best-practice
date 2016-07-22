@@ -1,5 +1,5 @@
 # panto-best-practice
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url] [![Build with Panto][build-image]][build-url]
 
 Best practice of panto.
 
@@ -18,3 +18,5 @@ $panto -l into -w
 [david-dm-image]:https://david-dm.org/pantojs/panto-best-practice.svg
 [david-dm-dev-url]:https://david-dm.org/pantojs/panto-best-practice#info=devDependencies
 [david-dm-dev-image]:https://david-dm.org/pantojs/panto-best-practice/dev-status.svg
+[build-image]:https://img.shields.io/badge/build%20with-panto-yellowgreen.svg
+[build-url]:http://pantojs.xyz/
