@@ -35,6 +35,12 @@ module.exports = panto => {
 
     const RES_MAP = new Map();
 
+    // Clear first
+    panto.on('start', () => {
+        scriptIntegrity = styleIntegrity = undefined;
+        RES_MAP.clear();
+    });
+
     const WRITE_ORIGIN = {
         destname: file => path.join(path.dirname(file.filename), file.stamp)
     };
