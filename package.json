@@ -32,6 +32,7 @@
     "panto-transformer-babel": "^0.1.4",
     "panto-transformer-browserify": "^0.1.1",
     "panto-transformer-integrity": "^0.2.3",
+    "panto-transformer-less": "^0.1.2",
     "panto-transformer-read": "^0.3.2",
     "panto-transformer-replace": "^0.1.0",
     "panto-transformer-uglify": "^0.1.2",

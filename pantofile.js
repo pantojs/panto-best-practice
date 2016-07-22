@@ -26,9 +26,11 @@ module.exports = panto => {
     panto.loadTransformer('integrity', require('panto-transformer-integrity'));
     panto.loadTransformer('aspect', require('panto-transformer-aspect'));
     panto.loadTransformer('replace', require('panto-transformer-replace'));
+    panto.loadTransformer('less', require('panto-transformer-less'));
 
-    let scriptIntegrity;
+    let scriptIntegrity, styleIntegrity;
 
+    // JSX
     panto.$('**/*.jsx').tag('js').read().babel({
         extend: __dirname + '/.babelrc'
     }).browserify({
@@ -40,12 +42,29 @@ module.exports = panto => {
         }
     }).write();
 
+    // LESS
+    panto.$('styles/main.less').tag('less').read().less({
+        lessOptions: {
+            compress: true
+        }
+    }).integrity().aspect({
+        aspect: file => {
+            styleIntegrity = file.integrity;
+        }
+    }).write({
+        destname: 'main.css'
+    });
+
+    // HTML
     panto.$('index.html').tag('index.html').read().replace({
         replacements: [
             ['<!-- scripts -->', function () {
                 return `<script src="./bundle.js" integrity="${scriptIntegrity}"></script>`;
+            }],
+            ['<!-- styles -->', function () {
+                return `<link rel="stylesheet" href="./main.css" integrity="${styleIntegrity}"/>`;
             }]
         ]
     }).write();
-    panto.reportDependencies('index.html', 'scripts/main.jsx');
+    panto.reportDependencies('index.html', '**/*.{less,css}', '**/*.{jsx,js}');
 };

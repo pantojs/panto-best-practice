@@ -9,7 +9,7 @@
   * @version 0.1.0
   * @since 0.1.0
   */
-import React from 'react/dist/react';
+import React from 'react/dist/react.min';
 import ReactDOM from 'react-dom';
 
 ReactDOM.render((<h1><strong>PantoJS Best Practice</strong>: Hello World!</h1>), document.querySelector('#react-root'));
