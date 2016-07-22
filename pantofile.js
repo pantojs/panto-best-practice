@@ -10,6 +10,7 @@
  * @since 0.1.0
  */
 'use strict';
+const path = require('path');
 
 module.exports = panto => {
     panto.setOptions({
@@ -27,42 +28,59 @@ module.exports = panto => {
     panto.loadTransformer('aspect', require('panto-transformer-aspect'));
     panto.loadTransformer('replace', require('panto-transformer-replace'));
     panto.loadTransformer('less', require('panto-transformer-less'));
+    panto.loadTransformer('resource', require('panto-transformer-resource'));
+    panto.loadTransformer('stamp', require('panto-transformer-stamp'));
 
     let scriptIntegrity, styleIntegrity;
 
-    // JSX
-    panto.$('**/*.jsx').tag('js').read().babel({
-        extend: __dirname + '/.babelrc'
-    }).browserify({
-        bundle: 'bundle.js',
-        entry: 'scripts/main.jsx'
-    }).uglify().integrity().aspect({
-        aspect: file => {
-            scriptIntegrity = file.integrity;
-        }
-    }).write();
+    const RES_MAP = new Map();
+
+    const WRITE_ORIGIN = {
+        destname: file => path.join(path.dirname(file.filename), file.stamp)
+    };
+
+    // Image
+    panto.$('**/*.{jpg,png,gif}').tag('image').read().stamp().aspect({
+        aspect: file => RES_MAP.set(file.filename, path.join(path.dirname(file.filename), file.stamp))
+    }).write(WRITE_ORIGIN);
 
     // LESS
     panto.$('styles/main.less').tag('less').read().less({
         lessOptions: {
             compress: true
         }
-    }).integrity().aspect({
+    }).resource({
+        getResourceAlias: (resname, filename) => path.relative(path.dirname(filename), RES_MAP.get(resname))
+    }).stamp().integrity().aspect({
         aspect: file => {
             styleIntegrity = file.integrity;
+            RES_MAP.set(file.filename, path.join(path.dirname(file.filename), file.stamp));
         }
-    }).write({
-        destname: 'main.css'
-    });
+    }).write(WRITE_ORIGIN);
+
+    // JSX
+    panto.$('**/*.jsx').tag('js').read().babel({
+        extend: __dirname + '/.babelrc'
+    }).browserify({
+        bundle: 'scripts/bundle.js',
+        entry: 'scripts/main.jsx'
+    }).uglify().stamp().integrity().aspect({
+        aspect: file => {
+            scriptIntegrity = file.integrity;
+            RES_MAP.set(file.filename, path.join(path.dirname(file.filename), file.stamp));
+        }
+    }).write(WRITE_ORIGIN);
 
     // HTML
-    panto.$('index.html').tag('index.html').read().replace({
+    panto.$('index.html').tag('index.html').read().resource({
+        getResourceAlias: name => RES_MAP.get(name)
+    }).replace({
         replacements: [
             ['<!-- scripts -->', function () {
-                return `<script src="./bundle.js" integrity="${scriptIntegrity}"></script>`;
+                return `<script src="./${RES_MAP.get('scripts/bundle.js')}" integrity="${scriptIntegrity}"></script>`;
             }],
             ['<!-- styles -->', function () {
-                return `<link rel="stylesheet" href="./main.css" integrity="${styleIntegrity}"/>`;
+                return `<link rel="stylesheet" href="./${RES_MAP.get('styles/main.less')}" integrity="${styleIntegrity}"/>`;
             }]
         ]
     }).write();
