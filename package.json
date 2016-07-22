@@ -4,7 +4,7 @@
   "description": "Best practice of panto",
   "main": "pantofile.js",
   "scripts": {
-    "test": "eslint src && panto -l info"
+    "test": "eslint src/**/*.jsx && panto -l info"
   },
   "repository": {
     "type": "git",
