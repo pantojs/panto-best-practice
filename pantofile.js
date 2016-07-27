@@ -70,6 +70,8 @@ module.exports = panto => {
     }).browserify({
         bundle: 'scripts/bundle.js',
         entry: 'scripts/main.jsx'
+    }).aspect({
+        aspect: file => (file.content = 'process={env:{NODE_ENV: \'production\'}};\n' + file.content)
     }).uglify().stamp().integrity().aspect({
         aspect: file => {
             scriptIntegrity = file.integrity;

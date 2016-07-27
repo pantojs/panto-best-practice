@@ -6,7 +6,7 @@ Best practice of panto.
 ```sh
 $npm install panto-cli -g
 $npm install
-$panto -l into -w
+$panto -l info -w
 ```
 
 [npm-url]: https://npmjs.org/package/panto-best-practice
