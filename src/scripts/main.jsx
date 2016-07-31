@@ -12,4 +12,4 @@
 import React from 'react/dist/react.min';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render((<h1><strong>PantoJS Best Practice</strong>: Hello World!</h1>), document.querySelector('#react-root'));
+ReactDOM.render((<h1><strong>PantoJS Best Practice</strong>: Hello Worldxx!</h1>), document.querySelector('#react-root'));

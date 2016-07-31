@@ -45,8 +45,10 @@ module.exports = panto => {
         destname: file => path.join(path.dirname(file.filename), file.stamp)
     };
 
+    const CACHE = {isCacheable:true};
+
     // Image
-    panto.$('**/*.{jpg,png,gif}').tag('image').read().stamp().aspect({
+    panto.$('**/*.{jpg,png,gif}').tag('image').read().stamp(CACHE).aspect({
         aspect: file => RES_MAP.set(file.filename, path.join(path.dirname(file.filename), file.stamp))
     }).write(WRITE_ORIGIN);
 
@@ -57,7 +59,7 @@ module.exports = panto => {
         }
     }).resource({
         getResourceAlias: (resname, filename) => path.relative(path.dirname(filename), RES_MAP.get(resname))
-    }).stamp().integrity().aspect({
+    }).stamp(CACHE).integrity(CACHE).aspect({
         aspect: file => {
             styleIntegrity = file.integrity;
             RES_MAP.set(file.filename, path.join(path.dirname(file.filename), file.stamp));
@@ -69,10 +71,15 @@ module.exports = panto => {
         extend: __dirname + '/.babelrc'
     }).browserify({
         bundle: 'scripts/bundle.js',
-        entry: 'scripts/main.jsx'
-    }).aspect({
-        aspect: file => (file.content = 'process={env:{NODE_ENV: \'production\'}};\n' + file.content)
-    }).uglify().stamp().integrity().aspect({
+        entry: 'scripts/main.jsx',
+        process:{
+            env:{
+                NODE_ENV:'production'
+            }
+        }
+    }).uglify({
+        isSlient: true
+    }).stamp(CACHE).integrity(CACHE).aspect({
         aspect: file => {
             scriptIntegrity = file.integrity;
             RES_MAP.set(file.filename, path.join(path.dirname(file.filename), file.stamp));

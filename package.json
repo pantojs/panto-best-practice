@@ -1,10 +1,10 @@
 {
   "name": "panto-best-practice",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Best practice of panto",
   "main": "pantofile.js",
   "scripts": {
-    "test": "eslint src/**/*.jsx && panto -l info"
+    "test": "eslint src/**/*.jsx && panto"
   },
   "repository": {
     "type": "git",
@@ -27,18 +27,18 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-3": "^6.11.0",
-    "panto": "^0.0.28",
-    "panto-transformer-aspect": "^0.1.1",
-    "panto-transformer-babel": "^0.1.4",
-    "panto-transformer-browserify": "^0.1.1",
-    "panto-transformer-integrity": "^0.2.3",
-    "panto-transformer-less": "^0.1.2",
-    "panto-transformer-read": "^0.3.2",
-    "panto-transformer-replace": "^0.1.0",
-    "panto-transformer-resource": "^0.1.1",
-    "panto-transformer-stamp": "^0.1.1",
-    "panto-transformer-uglify": "^0.1.2",
-    "panto-transformer-write": "^0.3.2"
+    "panto": "^0.0.30",
+    "panto-transformer-aspect": "^0.1.2",
+    "panto-transformer-babel": "^0.1.5",
+    "panto-transformer-browserify": "^0.1.3",
+    "panto-transformer-integrity": "^0.2.4",
+    "panto-transformer-less": "^0.1.3",
+    "panto-transformer-read": "^0.3.3",
+    "panto-transformer-replace": "^0.1.1",
+    "panto-transformer-resource": "^0.1.2",
+    "panto-transformer-stamp": "^0.1.2",
+    "panto-transformer-uglify": "^0.1.3",
+    "panto-transformer-write": "^0.3.3"
   },
   "dependencies": {
     "react": "^15.2.1",
