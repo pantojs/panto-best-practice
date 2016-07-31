@@ -27,6 +27,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-3": "^6.11.0",
+    "load-panto-transformers": "^0.1.0",
     "panto": "^0.0.30",
     "panto-transformer-aspect": "^0.1.2",
     "panto-transformer-babel": "^0.1.5",

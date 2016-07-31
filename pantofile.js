@@ -19,18 +19,8 @@ module.exports = panto => {
         cwd: __dirname
     });
 
-    panto.loadTransformer('read', require('panto-transformer-read'));
-    panto.loadTransformer('babel', require('panto-transformer-babel'));
-    panto.loadTransformer('write', require('panto-transformer-write'));
-    panto.loadTransformer('browserify', require('panto-transformer-browserify'));
-    panto.loadTransformer('uglify', require('panto-transformer-uglify'));
-    panto.loadTransformer('integrity', require('panto-transformer-integrity'));
-    panto.loadTransformer('aspect', require('panto-transformer-aspect'));
-    panto.loadTransformer('replace', require('panto-transformer-replace'));
-    panto.loadTransformer('less', require('panto-transformer-less'));
-    panto.loadTransformer('resource', require('panto-transformer-resource'));
-    panto.loadTransformer('stamp', require('panto-transformer-stamp'));
-
+    require('load-panto-transformers')(panto);
+    
     let scriptIntegrity, styleIntegrity;
 
     const RES_MAP = new Map();
