@@ -20,7 +20,8 @@ module.exports = panto => {
     });
 
     require('load-panto-transformers')(panto);
-    
+    require('time-panto')(panto);
+
     let scriptIntegrity, styleIntegrity;
 
     const RES_MAP = new Map();
@@ -35,7 +36,9 @@ module.exports = panto => {
         destname: file => path.join(path.dirname(file.filename), file.stamp)
     };
 
-    const CACHE = {isCacheable:true};
+    const CACHE = {
+        isCacheable: true
+    };
 
     // Image
     panto.$('**/*.{jpg,png,gif}').tag('image').read().stamp(CACHE).aspect({
@@ -62,9 +65,9 @@ module.exports = panto => {
     }).browserify({
         bundle: 'scripts/bundle.js',
         entry: 'scripts/main.jsx',
-        process:{
-            env:{
-                NODE_ENV:'production'
+        process: {
+            env: {
+                NODE_ENV: 'production'
             }
         }
     }).uglify({

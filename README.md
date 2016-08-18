@@ -16,7 +16,7 @@ $panto -l info -w
 [travis-image]: http://img.shields.io/travis/pantojs/panto-best-practice.svg
 [david-dm-url]:https://david-dm.org/pantojs/panto-best-practice
 [david-dm-image]:https://david-dm.org/pantojs/panto-best-practice.svg
-[david-dm-dev-url]:https://david-dm.org/pantojs/panto-best-practice#info=devDependencies
+[david-dm-dev-url]:https://david-dm.org/pantojs/panto-best-practice#type=dev
 [david-dm-dev-image]:https://david-dm.org/pantojs/panto-best-practice/dev-status.svg
 [build-image]:https://img.shields.io/badge/build%20with-panto-yellowgreen.svg
 [build-url]:http://pantojs.xyz/
